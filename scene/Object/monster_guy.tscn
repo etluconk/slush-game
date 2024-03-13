@@ -40,6 +40,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_lw6gv"]
 resource_name = "nom"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,10 +48,10 @@ tracks/0/path = NodePath("Head:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(4.92458, 1),
+"times": PackedFloat32Array(0, 0.5, 1.7),
+"transitions": PackedFloat32Array(4.92458, 8.57418, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 40)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 40)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qw0u0"]
