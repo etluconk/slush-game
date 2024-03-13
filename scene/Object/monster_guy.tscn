@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8r6erhwd6fp2"]
+[gd_scene load_steps=16 format=3 uid="uid://8r6erhwd6fp2"]
 
 [ext_resource type="Script" path="res://script/object/monster_guy.gd" id="1_aad0l"]
 [ext_resource type="Texture2D" uid="uid://c2837mrdid8ee" path="res://art/Object/Big Monster Guy/monster_0.png" id="1_al66m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bmfc5subkeuo7" path="res://art/Object/Big Monster Guy/monster_2.png" id="4_s7u3u"]
 [ext_resource type="Texture2D" uid="uid://d0unu81oai4h0" path="res://art/Object/Big Monster Guy/monster_2_blink.png" id="5_jmvgv"]
 [ext_resource type="Texture2D" uid="uid://c44cpj7b2fuo" path="res://art/Object/Big Monster Guy/monster_1.png" id="6_p8lxn"]
+[ext_resource type="PackedScene" uid="uid://5vqrky58xxfx" path="res://scene/Object/slushy.tscn" id="8_e8stf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ri6fu"]
 animations = [{
@@ -22,9 +23,60 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_lw6gv"]
+resource_name = "nom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(4.92458, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_1byqo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qw0u0"]
+_data = {
+"RESET": SubResource("Animation_1byqo"),
+"nom": SubResource("Animation_lw6gv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oqg2"]
+size = Vector2(154, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p1b6"]
+size = Vector2(158, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ung1n"]
+size = Vector2(172, 39.25)
+
 [node name="MonsterGuy" type="Area2D"]
+z_index = 15
 position = Vector2(160, 80)
+collision_layer = 8192
+collision_mask = 0
 script = ExtResource("1_aad0l")
+
+[node name="Slushy" parent="." instance=ExtResource("8_e8stf")]
+position = Vector2(0.000854492, 16.999)
 
 [node name="Head" type="Sprite2D" parent="."]
 texture = ExtResource("1_al66m")
@@ -45,8 +97,27 @@ texture = ExtResource("3_ctwrq")
 [node name="Eyes" type="AnimatedSprite2D" parent="Head"]
 sprite_frames = SubResource("SpriteFrames_ri6fu")
 animation = &"blink"
-frame_progress = 0.642399
+autoplay = "blink"
+frame_progress = 0.813694
 
 [node name="Mouth" type="Sprite2D" parent="."]
 position = Vector2(0, 40)
 texture = ExtResource("6_p8lxn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qw0u0")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1oqg2")
+
+[node name="SolidCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SolidCollision"]
+position = Vector2(0, -27.5)
+shape = SubResource("RectangleShape2D_5p1b6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SolidCollision"]
+position = Vector2(0, 64.625)
+shape = SubResource("RectangleShape2D_ung1n")

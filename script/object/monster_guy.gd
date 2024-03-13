@@ -10,3 +10,6 @@ func _ready():
 func _process(delta):
 	$Head/Black1.look_at(target.position)
 	$Head/Black2.look_at(target.position)
+
+func chow_down():
+	$AnimationPlayer.play("nom")

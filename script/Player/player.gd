@@ -40,47 +40,53 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("esplode")
 	elif !global.p_slurping:
 		$AnimatedSprite2D.show()
-
-		if $SpawnTimer.is_stopped():
+		if global.p_inside_monster:
+			direction = 1
 			apply_gravity(delta)
-			handle_jump()
-			handle_wall_jump()
-			handle_y_vel_limits(delta)
-			handle_h_movement(delta)
 			handle_goo()
-
+			handle_h_movement(delta)
 			move_and_slide()
-
-			# Advance coyote time.
-			time_off_ground += delta
-
-			# Jump buffer.
-			time_since_jump_pressed += delta
-			if Input.is_action_just_pressed("jump"):
-				time_since_jump_pressed = 0
-
-			ground_jump_input = time_since_jump_pressed < JUMP_BUFFER_CUTOFF
-
-			was_running = direction != 0
-
-			# Falling / jumping animation
-			if is_on_wall():
-				$AnimatedSprite2D.play("idle")
-			elif !is_on_floor():
-				if velocity.y < 0:
-					$AnimatedSprite2D.play("jump")
-				else:
-					$AnimatedSprite2D.play("fall")
-
-			if is_on_wall_only():
-				if get_wall_normal().x > 0:
-					$AnimatedSprite2D.rotation_degrees = 90
-				else:
-					$AnimatedSprite2D.rotation_degrees = -90
-			else:
-				$AnimatedSprite2D.rotation_degrees = 0
 		else:
-			$AnimatedSprite2D.play("idle")
+			if $SpawnTimer.is_stopped():
+				apply_gravity(delta)
+				handle_jump()
+				handle_wall_jump()
+				handle_y_vel_limits(delta)
+				handle_h_movement(delta)
+				handle_goo()
+
+				move_and_slide()
+
+				# Advance coyote time.
+				time_off_ground += delta
+
+				# Jump buffer.
+				time_since_jump_pressed += delta
+				if Input.is_action_just_pressed("jump"):
+					time_since_jump_pressed = 0
+
+				ground_jump_input = time_since_jump_pressed < JUMP_BUFFER_CUTOFF
+
+				was_running = direction != 0
+
+				# Falling / jumping animation
+				if is_on_wall():
+					$AnimatedSprite2D.play("idle")
+				elif !is_on_floor():
+					if velocity.y < 0:
+						$AnimatedSprite2D.play("jump")
+					else:
+						$AnimatedSprite2D.play("fall")
+
+				if is_on_wall_only():
+					if get_wall_normal().x > 0:
+						$AnimatedSprite2D.rotation_degrees = 90
+					else:
+						$AnimatedSprite2D.rotation_degrees = -90
+				else:
+					$AnimatedSprite2D.rotation_degrees = 0
+			else:
+				$AnimatedSprite2D.play("idle")
 	else:
 		slurp()
 
@@ -234,8 +240,9 @@ func show_slushy_scene():
 	global.monochrome_animation.emit()
 
 func _on_slurp_timer_timeout():
-	global.lev += 1
-	global.reset_lev.emit()
+	if !global.p_inside_monster:
+		global.lev += 1
+		global.reset_lev.emit()
 
 func _on_ruh_roh_detector_body_entered(body):
 	global.p_alive = false
@@ -244,3 +251,7 @@ func _on_ruh_roh_detector_body_entered(body):
 
 func _on_ded_timer_timeout():
 	global.reset_lev.emit()
+
+func _on_monster_detector_area_entered(area):
+	global.p_inside_monster = true
+	area.chow_down()

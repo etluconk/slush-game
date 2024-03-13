@@ -2,6 +2,7 @@ extends Node
 
 var p_slurping = false
 var p_alive = true
+var p_inside_monster = false
 
 var stopwatch = 0
 const STOPWATCH_MAX = 15

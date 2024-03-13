@@ -227,6 +227,14 @@ collision_mask = 64
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_g6k4t")
 
+[node name="MonsterDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterDetector"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_g6k4t")
+
 [node name="HeadBonk" type="RayCast2D" parent="."]
 rotation = 3.14159
 target_position = Vector2(-1.52111e-05, 6)
@@ -274,5 +282,6 @@ autostart = true
 [connection signal="body_entered" from="GooDetector" to="." method="_on_goo_detector_body_entered"]
 [connection signal="area_entered" from="SlushyDetector" to="." method="_on_slushy_detector_area_entered"]
 [connection signal="body_entered" from="RuhRohDetector" to="." method="_on_ruh_roh_detector_body_entered"]
+[connection signal="area_entered" from="MonsterDetector" to="." method="_on_monster_detector_area_entered"]
 [connection signal="timeout" from="SlurpTimer" to="." method="_on_slurp_timer_timeout"]
 [connection signal="timeout" from="DedTimer" to="." method="_on_ded_timer_timeout"]
