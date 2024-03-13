@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6pfcaqs1qgdv"]
+
+[ext_resource type="Texture2D" uid="uid://ln5sjbuftv27" path="res://art/Tiles/Platform.png" id="1_1awcg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jy0o"]
+size = Vector2(13, 2)
+
+[node name="LeftPlatform" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, 1)
+shape = SubResource("RectangleShape2D_7jy0o")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-14, 0)
+texture = ExtResource("1_1awcg")
+centered = false

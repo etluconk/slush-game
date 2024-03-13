@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbn7vglke3rix"]
+
+[ext_resource type="FontFile" uid="uid://ck4da2ppnatlb" path="res://font/visitor1.ttf" id="1_8sjhw"]
+[ext_resource type="Texture2D" uid="uid://ddpae7ifko17a" path="res://art/UI/button2.png" id="2_6nocm"]
+[ext_resource type="Texture2D" uid="uid://p87j3287enk8" path="res://art/UI/button1.png" id="2_g5srf"]
+[ext_resource type="Script" path="res://script/ui/good_button.gd" id="3_x2y7h"]
+[ext_resource type="Texture2D" uid="uid://obkabfhsyng" path="res://art/UI/button3.png" id="4_102ef"]
+[ext_resource type="AudioStream" uid="uid://bcj8pyjo213db" path="res://sound/UI/click.wav" id="6_jlums"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vtf7"]
+texture = ExtResource("2_g5srf")
+texture_margin_left = 17.0
+texture_margin_top = 9.0
+texture_margin_right = 17.0
+texture_margin_bottom = 11.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r8vr4"]
+content_margin_left = 17.0
+content_margin_top = 8.0
+content_margin_right = 17.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_6nocm")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 11.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agpc6"]
+texture = ExtResource("4_102ef")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0
+expand_margin_left = 2.0
+expand_margin_top = 4.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="GoodButton" type="Button"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 116.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/font_hover_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/font_focus_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/font_disabled_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/font_outline_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/icon_normal_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/icon_pressed_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/icon_hover_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/icon_focus_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_colors/icon_disabled_color = Color(1, 0.968627, 0.388235, 1)
+theme_override_fonts/font = ExtResource("1_8sjhw")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxTexture_4vtf7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4vtf7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_r8vr4")
+theme_override_styles/focus = SubResource("StyleBoxTexture_agpc6")
+text = "helo i am buton"
+script = ExtResource("3_x2y7h")
+
+[node name="Press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jlums")
+volume_db = -10.0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

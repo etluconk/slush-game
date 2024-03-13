@@ -1,0 +1,96 @@
+[gd_scene load_steps=16 format=3 uid="uid://ywj7fqc4nsaq"]
+
+[ext_resource type="Script" path="res://script/mmm_slushy_time.gd" id="1_hnd36"]
+[ext_resource type="PackedScene" uid="uid://dn1h6i6q28bj6" path="res://scene/BG/bg.tscn" id="1_ud1hf"]
+[ext_resource type="Texture2D" uid="uid://cq4u5i3e7l413" path="res://art/Plaer/closeup_slushy_hmm.png" id="2_4xw2s"]
+[ext_resource type="Texture2D" uid="uid://cnl0bd2uts3fe" path="res://art/Plaer/closeup_slushy_eat.png" id="3_6lry5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imucu"]
+atlas = ExtResource("2_4xw2s")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4bty"]
+atlas = ExtResource("3_6lry5")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaerh"]
+atlas = ExtResource("3_6lry5")
+region = Rect2(320, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgkbl"]
+atlas = ExtResource("3_6lry5")
+region = Rect2(640, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klpo2"]
+atlas = ExtResource("3_6lry5")
+region = Rect2(960, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmk1r"]
+atlas = ExtResource("3_6lry5")
+region = Rect2(1280, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aqlp"]
+atlas = ExtResource("3_6lry5")
+region = Rect2(1600, 0, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f51eq"]
+animations = [{
+"frames": [{
+"duration": 40.0,
+"texture": SubResource("AtlasTexture_imucu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4bty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaerh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgkbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klpo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmk1r")
+}, {
+"duration": 50.0,
+"texture": SubResource("AtlasTexture_2aqlp")
+}],
+"loop": false,
+"name": &"Slushy!!!",
+"speed": 20.0
+}]
+
+[sub_resource type="Animation" id="Animation_305ys"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_r2sk2"]
+resource_name = "move_down"
+length = 30.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_556h0"]
+_data = {
+"RESET": SubResource("Animation_305ys"),
+"move_down": SubResource("Animation_r2sk2")
+}
+
+[node name="MmmSlushyTime" type="Node2D"]
+script = ExtResource("1_hnd36")
+
+[node name="BG" parent="." instance=ExtResource("1_ud1hf")]
+visible = false
+
+[node name="Slushy" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f51eq")
+animation = &"Slushy!!!"
+autoplay = "Slushy!!!"
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_556h0")
+}
+autoplay = "move_down"
+
+[connection signal="animation_finished" from="Slushy" to="." method="_on_slushy_animation_finished"]

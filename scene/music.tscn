@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://1aippq0x6c7l"]
+
+[ext_resource type="AudioStream" uid="uid://blxreuhck0fh" path="res://sound/Music/SlushyYum.wav" id="1_85cfp"]
+[ext_resource type="Script" path="res://script/global_music.gd" id="2_gq7hs"]
+[ext_resource type="AudioStream" uid="uid://dgk2en4xie25r" path="res://sound/Music/TitleScreen.wav" id="2_q23s6"]
+
+[node name="MainTheme" type="AudioStreamPlayer"]
+stream = ExtResource("1_85cfp")
+volume_db = -5.0
+script = ExtResource("2_gq7hs")
+
+[node name="TitleScreen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q23s6")
+volume_db = -5.0
+autoplay = true
