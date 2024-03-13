@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://8r6erhwd6fp2"]
+
+[ext_resource type="Script" path="res://script/object/monster_guy.gd" id="1_aad0l"]
+[ext_resource type="Texture2D" uid="uid://c2837mrdid8ee" path="res://art/Object/Big Monster Guy/monster_0.png" id="1_al66m"]
+[ext_resource type="Texture2D" uid="uid://dtvdh2cem256a" path="res://art/Object/Big Monster Guy/monster_2_solid.png" id="2_fxcli"]
+[ext_resource type="Texture2D" uid="uid://dcgybu3tbpxov" path="res://art/Object/Big Monster Guy/monster_2_black.png" id="3_ctwrq"]
+[ext_resource type="Texture2D" uid="uid://bmfc5subkeuo7" path="res://art/Object/Big Monster Guy/monster_2.png" id="4_s7u3u"]
+[ext_resource type="Texture2D" uid="uid://d0unu81oai4h0" path="res://art/Object/Big Monster Guy/monster_2_blink.png" id="5_jmvgv"]
+[ext_resource type="Texture2D" uid="uid://c44cpj7b2fuo" path="res://art/Object/Big Monster Guy/monster_1.png" id="6_p8lxn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ri6fu"]
+animations = [{
+"frames": [{
+"duration": 20.0,
+"texture": ExtResource("4_s7u3u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jmvgv")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 5.0
+}]
+
+[node name="MonsterGuy" type="Area2D"]
+position = Vector2(160, 80)
+script = ExtResource("1_aad0l")
+
+[node name="Head" type="Sprite2D" parent="."]
+texture = ExtResource("1_al66m")
+
+[node name="EyeWhite" type="Sprite2D" parent="Head"]
+texture = ExtResource("2_fxcli")
+
+[node name="Black1" type="Sprite2D" parent="Head"]
+position = Vector2(-38, -30)
+rotation = -0.82205
+texture = ExtResource("3_ctwrq")
+
+[node name="Black2" type="Sprite2D" parent="Head"]
+position = Vector2(38, -30)
+rotation = -0.82205
+texture = ExtResource("3_ctwrq")
+
+[node name="Eyes" type="AnimatedSprite2D" parent="Head"]
+sprite_frames = SubResource("SpriteFrames_ri6fu")
+animation = &"blink"
+frame_progress = 0.642399
+
+[node name="Mouth" type="Sprite2D" parent="."]
+position = Vector2(0, 40)
+texture = ExtResource("6_p8lxn")
