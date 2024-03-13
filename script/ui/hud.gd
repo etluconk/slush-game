@@ -2,7 +2,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$FlippityFloppityTimer.max_value = global.STOPWATCH_MAX
+	$FlippityFloppityTimer.max_value = global.STOPWATCH_MAX - 5
 
 	$Keys/Left/Label.text = global.l_btn_str
 	$Keys/Right/Label.text = global.r_btn_str

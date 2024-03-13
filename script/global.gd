@@ -4,7 +4,7 @@ var p_slurping = false
 var p_alive = true
 
 var stopwatch = 0
-const STOPWATCH_MAX = 30
+const STOPWATCH_MAX = 15
 
 var l_btn_str = "A"
 var r_btn_str = "D"
@@ -13,7 +13,7 @@ var j_btn_str = "W"
 var p_pos = Vector2.ZERO
 var p_has_flippity = false
 
-var lev = 8
+var lev = 1
 
 signal flippity_floppity
 signal monochrome_animation

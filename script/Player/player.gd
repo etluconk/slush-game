@@ -17,7 +17,7 @@ var JUMP_BUFFER_CUTOFF = 0.3
 var time_since_jump_pressed = 1
 
 # Stick to walls for a little bit so wall jumps feel more natural.
-var WALL_RELEASE_CUTOFF = 0.2
+var WALL_RELEASE_CUTOFF = 0.1
 var time_on_wall = 0
 var ground_jump_input = false
 
