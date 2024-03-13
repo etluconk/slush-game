@@ -157,12 +157,9 @@ text = "play!"
 first_focus = true
 
 [node name="Quit" parent="HBoxContainer" instance=ExtResource("3_jmce7")]
+visible = false
 layout_mode = 2
 text = "don't play :("
-
-[node name="Settings" parent="HBoxContainer" instance=ExtResource("3_jmce7")]
-layout_mode = 2
-text = "speedrun!"
 
 [node name="Player" type="AnimatedSprite2D" parent="."]
 position = Vector2(65, 73)
