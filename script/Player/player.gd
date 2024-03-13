@@ -6,7 +6,7 @@ var jump_velocity = -200.0
 var MAX_FALL_VEL = 300.0
 
 # Set the gravity.
-var gravity = 600
+var gravity = 590
 
 # Coyote time.
 var COYOTE_TIME_CUTOFF = 0.1
