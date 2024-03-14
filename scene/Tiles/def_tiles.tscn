@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://da1yxvpv01s1d"]
+[gd_scene load_steps=12 format=3 uid="uid://da1yxvpv01s1d"]
 
 [ext_resource type="Texture2D" uid="uid://bnplijl3ghrta" path="res://art/Tiles/vintage.png" id="1_ncbnk"]
 [ext_resource type="Texture2D" uid="uid://g18qa3d66dmu" path="res://art/Tiles/goo_tiles.png" id="2_6wlu8"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bqakaa3by0r7o" path="res://scene/Tiles/right_platform.tscn" id="4_0frxo"]
 [ext_resource type="Script" path="res://script/Player/room_cam.gd" id="4_6jkga"]
 [ext_resource type="Script" path="res://script/Tiles/def_tiles.gd" id="5_evviu"]
-[ext_resource type="PackedScene" uid="uid://d17yfikgvelww" path="res://scene/Player/player.tscn" id="9_c1lb8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gl6eg"]
 texture = ExtResource("1_ncbnk")
@@ -1449,6 +1448,3 @@ script = ExtResource("5_evviu")
 position = Vector2(160, 90)
 enabled = false
 script = ExtResource("4_6jkga")
-
-[node name="Player" parent="." instance=ExtResource("9_c1lb8")]
-position = Vector2(241.001, 155.999)
