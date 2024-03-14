@@ -14,3 +14,7 @@ func switch_music():
 	play()
 	$TitleScreen.stop()
 	title_music = false
+
+func title_music_again():
+	title_music = true
+	$TitleScreen.play()
