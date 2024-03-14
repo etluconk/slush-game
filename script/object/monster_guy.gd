@@ -13,3 +13,6 @@ func _process(delta):
 
 func chow_down():
 	$AnimationPlayer.play("nom")
+
+func _on_animation_player_animation_finished(anim_name):
+	get_tree().change_scene_to_file("res://scene/the_end.tscn")
