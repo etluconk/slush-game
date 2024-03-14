@@ -24,6 +24,9 @@ func _process(delta):
 		var scene_name = get_tree().current_scene.name
 		visible = not(scene_name == "TitleScreen" or scene_name == "BeginningCutscene")
 
+	if global.p_inside_monster:
+		hide()
+
 func flippy():
 	$Keys/Left/Label.text = global.l_btn_str
 	$Keys/Right/Label.text = global.r_btn_str
@@ -40,3 +43,6 @@ func next_lev():
 	global.p_slurping = false
 	global.p_alive = true
 	get_tree().change_scene_to_file("res://scene/Lev/" + str(global.lev) + ".tscn")
+
+	if global.lev == 15:
+		global_music.stop()
