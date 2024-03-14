@@ -27,6 +27,8 @@ var was_running = false
 
 var can_jump_height_control = true
 
+var slushy_instance_for_deletion : Area2D
+
 var direction = 0
 
 func _ready():
@@ -237,12 +239,15 @@ func handle_goo():
 func slurp():
 	if !$SoundFX/Slurp.is_playing():
 		$SoundFX/Slurp.pitch_scale = randf_range(0.9, 1.1)
-		$SoundFX/Slurp.play()
+		if !global.p_inside_monster:
+			$SoundFX/Slurp.play()
 	$AnimatedSprite2D.play("yay")
 
 func _on_slushy_detector_area_entered(area):
 	global.p_slurping = true
 	$SlurpTimer.start()
+
+	slushy_instance_for_deletion = area
 
 func show_slushy_scene():
 	global.p_has_flippity = true
@@ -252,6 +257,9 @@ func _on_slurp_timer_timeout():
 	if !global.p_inside_monster:
 		global.lev += 1
 		global.reset_lev.emit()
+	else:
+		hide()
+		slushy_instance_for_deletion.queue_free()
 
 func _on_ruh_roh_detector_body_entered(body):
 	global.p_alive = false
@@ -263,4 +271,5 @@ func _on_ded_timer_timeout():
 
 func _on_monster_detector_area_entered(area):
 	global.p_inside_monster = true
+	global.p_has_flippity = false
 	area.chow_down()
