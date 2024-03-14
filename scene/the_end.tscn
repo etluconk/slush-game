@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvhxu1cft7bp7"]
+
+[ext_resource type="Script" path="res://script/the_end.gd" id="1_elw4r"]
+[ext_resource type="FontFile" uid="uid://ck4da2ppnatlb" path="res://font/visitor1.ttf" id="1_r62fv"]
+[ext_resource type="PackedScene" uid="uid://dbn7vglke3rix" path="res://scene/Ui/good_button.tscn" id="2_36hu0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rd8ca"]
+font = ExtResource("1_r62fv")
+font_size = 10
+font_color = Color(1, 0.968627, 0.388235, 1)
+
+[node name="TheEnd" type="Node2D"]
+script = ExtResource("1_elw4r")
+
+[node name="ReadyOrNot" type="Label" parent="."]
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 125.0
+text = "congratulation your did it
+
+don't worry, dave is just
+tripping. he's ok.
+
+sorry the game is so short,
+i had to make it around school :i
+
+aight see ya"
+label_settings = SubResource("LabelSettings_rd8ca")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoodButton" parent="." instance=ExtResource("2_36hu0")]
+offset_left = 94.0
+offset_top = 140.0
+offset_right = 214.0
+offset_bottom = 169.0
+text = "buh bye"
+first_focus = true
+
+[connection signal="pressed" from="GoodButton" to="." method="_on_good_button_pressed"]
