@@ -25,6 +25,8 @@ var running_volume_db = -19.0
 var running_cycle = 0
 var was_running = false
 
+var can_jump_height_control = true
+
 var direction = 0
 
 func _ready():
@@ -97,6 +99,7 @@ func apply_gravity(delta):
 
 	if is_on_floor():
 		time_off_ground = 0
+		can_jump_height_control = true
 	else:
 		velocity.y += gravity * delta
 
@@ -130,7 +133,7 @@ func handle_wall_jump():
 
 func handle_y_vel_limits(delta):
 	# Jump height control.
-	if Input.is_action_just_released("jump") and velocity.y < jump_velocity / 4:
+	if Input.is_action_just_released("jump") and velocity.y < jump_velocity / 4 and can_jump_height_control:
 		velocity.y = jump_velocity / 2
 
 	# Limit falling velocity.
@@ -211,16 +214,22 @@ func handle_goo():
 			time_off_ground = COYOTE_TIME_CUTOFF
 			ground_jump_input = false
 
+			can_jump_height_control = false
+
 			$SoundFX/Bonk.pitch_scale = randf_range(1.1, 1.4)
 			$SoundFX/Bonk.play()
 		if $HeadBonk.is_colliding():
 			velocity.y = -jump_velocity
+
+			can_jump_height_control = false
 
 			$SoundFX/Bonk.pitch_scale = randf_range(1.1, 1.4)
 			$SoundFX/Bonk.play()
 		if is_on_wall():
 			velocity.x = get_wall_normal().x * SPEED
 			velocity.y = jump_velocity
+
+			can_jump_height_control = false
 
 			$SoundFX/Bonk.pitch_scale = randf_range(1.1, 1.4)
 			$SoundFX/Bonk.play()
