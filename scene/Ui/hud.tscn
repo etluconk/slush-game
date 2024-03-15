@@ -363,6 +363,7 @@ _data = {
 }
 
 [node name="HUD" type="CanvasLayer"]
+visible = false
 
 [node name="Transition" type="Node2D" parent="."]
 
