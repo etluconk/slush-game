@@ -14,4 +14,4 @@ position = Vector2(50.0011, 140)
 
 [node name="MonsterGuy" parent="DefTiles" node_paths=PackedStringArray("target") instance=ExtResource("3_cdwi4")]
 position = Vector2(259, 79.9996)
-target = NodePath("../Player")
+target = NodePath("../Player2")
